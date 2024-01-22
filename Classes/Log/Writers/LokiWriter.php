@@ -5,6 +5,7 @@ namespace Jops\TYPO3\Loki\Log\Writers;
 use Jops\TYPO3\Loki\Log\LogRecordFormatter;
 use RuntimeException;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Http\Client\GuzzleClientFactory;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Log\Exception\InvalidLogWriterConfigurationException;
 use TYPO3\CMS\Core\Log\LogRecord;
@@ -30,7 +31,8 @@ class LokiWriter extends AbstractWriter
     public function __construct(array $options = [])
     {
         $this->extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
-        $this->requestFactory = GeneralUtility::makeInstance(RequestFactory::class);
+        $guzzleClientFactory = GeneralUtility::makeInstance(GuzzleClientFactory::class);
+        $this->requestFactory = GeneralUtility::makeInstance(RequestFactory::class, $guzzleClientFactory);
 
         parent::__construct($options);
     }

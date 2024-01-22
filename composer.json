@@ -23,9 +23,9 @@
     }
   ],
   "require": {
-    "php": "^7.4 || ^8.0",
+    "php": ">= 8.1.0 <= 8.3.99",
     "ext-json": "*",
-    "typo3/cms-core": "^11.5"
+    "typo3/cms-core": "^12.4"
   },
   "require-dev": {
     "phpstan/extension-installer": "^1.1",
